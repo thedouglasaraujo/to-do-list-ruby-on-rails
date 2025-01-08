@@ -1,0 +1,58 @@
+<h1 style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+  <span style="">
+    <%= %>
+  </span>
+
+  <!-- Card actions (botões) -->
+  <div class="card-actions" style="display: flex; gap: 10px; white-space: nowrap;">
+    <%= link_to 'Voltar', lists_path, class: "btn btn-secondary small-btn" %>
+    <%= link_to 'Editar', edit_list_path(@list), class: "btn btn-primary small-btn" %>
+    <%= link_to 'Excluir', list_path(@list), method: :delete, data: { confirm: 'Tem certeza?' }, class: "btn btn-danger small-btn" %>
+  </div>
+</h1>
+
+<!-- Descrição -->
+<span style="flex: 1; text-align: center; font-size: 1.5rem; font-weight: bold;"><%= @list.title %></span>
+<p style="margin: 20px 0; text-align: left;"><%= @list.description %></p>
+
+<hr>
+
+<!-- Formulário para adicionar um novo item -->
+<%= form_with(model: [@list, Item.new], local: true) do |form| %>
+  <div class="field" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; width: 100vh;">
+    <%= form.text_field :description, placeholder: "Descrição do Novo Item", class: "input large", style: "flex: 1; min-width: 300px;" %>
+    <%= form.hidden_field :done, value: false %>
+    <%= form.submit "Adicionar item", class: "btn btn-primary small-btn", style: "min-width: 50px; min-height: 50px; font-size: 16px; color: white;" %>
+  </div>
+<% end %>
+
+<hr>
+
+<!-- Listagem dos itens em formato de tabela -->
+<table class="table table-striped" style="width: 100%; border-spacing: 0 10px;">
+  <thead>
+    <tr>
+      <th style="text-align: left; padding: 10px;">Atividade</th>
+      <th style="text-align: center; padding: 10px;">Concluída</th>
+      <th style="text-align: center; padding: 10px;">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @list.items.each do |item| %>
+      <tr>
+        <td style="padding: 10px; text-align: left;"><%= item.description %></td>
+        <td style="text-align: center; padding: 10px;">
+          <!-- Checkbox para alternar entre concluído e pendente -->
+          <%= form_with(model: item, url: toggle_status_list_item_path(@list, item), method: :patch, local: true) do |f| %>
+            <%= f.check_box :done, { checked: item.done, class: 'item-status-checkbox' }, true, false %>
+          <% end %>
+        </td>
+        <td style="text-align: center; padding: 10px; display: flex; gap: 10px; justify-content: center;">
+          <!-- Botões de editar e excluir com estilo -->
+          <%= link_to 'Editar', edit_list_item_path(@list, item), class: "btn btn-primary small-btn" %>
+          <%= link_to 'Excluir', list_item_path(@list, item), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este item?' }, class: "btn btn-danger small-btn" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
