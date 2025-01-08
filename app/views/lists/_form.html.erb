@@ -1,0 +1,26 @@
+<%= form_with(model: list, local: true) do |form| %>
+  <% if list.errors.any? %>
+    <div class="error_explanation">
+      <h2><%= pluralize(list.errors.count, "erro") %> proibiu esta lista de ser salva:</h2>
+      <ul>
+        <% list.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title, "Título" %>  <!-- Título traduzido -->
+    <%= form.text_field :title, class: "input large" %>  <!-- Aumentando o tamanho -->
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Descrição" %>  <!-- Descrição traduzida -->
+    <%= form.text_area :description, class: "textarea large" %>  <!-- Aumentando o tamanho -->
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Criar Lista", class: "create-btn" %> <!-- Usando a classe create-btn diretamente -->
+  </div>
+<% end %>
