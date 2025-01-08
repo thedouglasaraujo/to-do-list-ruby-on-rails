@@ -166,11 +166,29 @@ button[type="submit"]:active {
 }
 
 
-.input.large, .textarea.large {
-  padding: 16px;
-  font-size: 16px;
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
   width: 100%;
-  max-width: 800px;
+}
+
+.input.large, .textarea.large {
+  width: 100vh;
+  max-width: 600px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.textarea.large {
+  height: 150px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .small-btn {
