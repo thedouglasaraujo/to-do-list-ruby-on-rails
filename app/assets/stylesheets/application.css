@@ -25,6 +25,14 @@ h1 {
   margin-bottom: 20px;
 }
 
+.title-page {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -65,12 +73,24 @@ h1 {
   border: 0;
 }
 
-.btn-primary { background-color: #3b8d99; } 
-.btn-danger { background-color: #dc3545; }
-.btn-secondary { background-color: #6c757d; }
-.btn-success { background-color: #28a745; }
+.btn-primary {
+  background-color: #3b8d99;
+}
 
-.input, .textarea {
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn-success {
+  background-color: #28a745;
+}
+
+.input,
+.textarea {
   padding: 10px;
   margin: 10px 0;
   width: 100%;
@@ -137,8 +157,7 @@ button[type="submit"] {
   text-decoration: none;
   border-radius: 8px;
   margin: 10px 0;
-  background-color: #28a745
-  border: none;
+  background-color: #28a745 border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -174,7 +193,8 @@ button[type="submit"]:active {
   width: 100%;
 }
 
-.input.large, .textarea.large {
+.input.large,
+.textarea.large {
   width: 100vh;
   max-width: 600px;
   padding: 10px;
@@ -193,10 +213,10 @@ label {
 }
 
 .small-btn {
-    font-size: 12px;
-    height: auto; 
-    border: 0;
-  }
+  font-size: 14px;
+  height: auto;
+  border: 0;
+}
 
 .custom-checkbox {
   position: relative;
@@ -221,7 +241,7 @@ label {
   transition: 0.3s;
 }
 
-.custom-checkbox input:checked + .checkmark {
+.custom-checkbox input:checked+.checkmark {
   background-color: #4CAF50;
 }
 
@@ -237,6 +257,18 @@ label {
   transition: 0.3s;
 }
 
-.custom-checkbox input:checked + .checkmark:before {
+.custom-checkbox input:checked+.checkmark:before {
   transform: translateX(20px);
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: translate(0, 0);
 }
