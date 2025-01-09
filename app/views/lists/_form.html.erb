@@ -10,17 +10,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title, "Título" %> <!-- Título traduzido -->
-    <%= form.text_field :title, class: "input large" %> <!-- Aumentando o tamanho -->
+  <div class="field" style="flex-direction: column;">
+    <%= form.label :title, "Título" %>
+    <%= form.text_field :title, class: "input large" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description, "Descrição" %> <!-- Descrição traduzida -->
-    <%= form.text_area :description, class: "textarea large" %> <!-- Aumentando o tamanho -->
+  <div class="field" style="flex-direction: column;">
+    <%= form.label :description, "Descrição" %>
+    <%= form.text_area :description, class: "textarea large" %>
   </div>
 
   <div class="actions">
-    <%= form.submit "Criar Lista", class: "create-btn" %> <!-- Usando a classe create-btn diretamente -->
+    <%= form.submit list.new_record? ? "Criar Lista" : "Editar Lista", class: "create-btn" %>
   </div>
 <% end %>
