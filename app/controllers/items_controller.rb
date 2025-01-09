@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_list
-  before_action :set_item, only: [:update, :destroy]
+  before_action :set_item, only: [:update, :destroy, :toggle_status]
 
   def create
     @item = @list.items.new(item_params)
@@ -22,6 +22,12 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     redirect_to @list, notice: 'Item excluído com sucesso.'
+  end
+
+  def toggle_status
+    @item = @list.items.find(params[:id])
+    @item.update(done: !@item.done)
+    redirect_to @list, notice: 'Status do item atualizado com sucesso.'
   end
 
   private

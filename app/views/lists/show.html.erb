@@ -1,5 +1,5 @@
 <h1 style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-  <span style="">
+  <span>
     <%= %>
   </span>
 
@@ -26,7 +26,6 @@
   </div>
 <% end %>
 
-
 <hr>
 
 <!-- Listagem dos itens em formato de tabela -->
@@ -43,15 +42,15 @@
       <tr>
         <td style="padding: 10px; text-align: left;"><%= item.description %></td>
         <td style="text-align: center; padding: 10px;">
-          <!-- Checkbox para alternar entre concluído e pendente -->
+          <!-- Formulário para alternar entre concluído e pendente -->
           <%= form_with(model: item, url: toggle_status_list_item_path(@list, item), method: :patch, local: true) do |f| %>
             <label class="custom-checkbox">
-              <%= f.check_box :done, { checked: item.done, class: 'item-status-checkbox' }, true, false %>
+              <%= f.check_box :done, { checked: item.done, class: 'item-status-checkbox', onchange: 'this.form.submit();' }, true, false %>
               <span class="checkmark">
-                <span class="checkmark-icon"><%= item.done ? '✓' : '' %></span>
+                <span class="checkmark-icon"><%= item.done ? '' : '' %></span>
               </span>
             </label>
-          <% end %>
+          <% end %>                  
         </td>
         <td style="text-align: center; padding: 10px; display: flex; gap: 10px; justify-content: center;">
           <!-- Botões de editar e excluir com estilo -->
