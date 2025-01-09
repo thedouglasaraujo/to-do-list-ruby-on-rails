@@ -7,7 +7,7 @@
   <div class="card-actions" style="display: flex; gap: 10px; white-space: nowrap;">
     <%= link_to 'Voltar', lists_path, class: "btn btn-secondary small-btn" %>
     <%= link_to 'Editar', edit_list_path(@list), class: "btn btn-primary small-btn" %>
-    <%= link_to 'Excluir', list_path(@list), method: :delete, data: { confirm: 'Tem certeza?' }, class: "btn btn-danger small-btn" %>
+    <%= link_to 'Excluir', '#', class: 'btn btn-danger btn-sm', data: { bs_toggle: 'modal', bs_target: "#confirmModal-#{@list.id}" } %>
   </div>
 </h1>
 
@@ -78,7 +78,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <%= form_with(url: list_item_path(@list, item), method: :delete, local: true, html: { style: "display: inline;" }) do %>
+              <%= form_with(url: list_item_path(@list, item), method: :delete, html: { style: "display: inline;" }) do %>
                 <%= submit_tag 'Excluir', class: 'btn btn-danger' %>
               <% end %>
             </div>
@@ -88,3 +88,24 @@
     <% end %>
   </tbody>
 </table>
+
+<!-- Modal de Confirmação -->
+<div class="modal fade" id="confirmModal-<%= @list.id %>" tabindex="-1" aria-labelledby="confirmModalLabel-<%= @list.id %>" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel-<%= @list.id %>">Confirmação</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza de que deseja excluir esta lista? Esta ação não pode ser desfeita.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <%= form_with(url: list_path(@list), method: :delete, html: { style: "display: inline;" }) do %>
+          <%= submit_tag 'Excluir', class: 'btn btn-danger' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
