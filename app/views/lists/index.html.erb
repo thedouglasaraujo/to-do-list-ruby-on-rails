@@ -10,7 +10,29 @@
       <% end %>
 
       <!-- Conteúdo do Card -->
-      <h2 style="margin-bottom: 10px; font-size: 18px; color: #333; position: relative; z-index: 2;"><%= list.title %></h2>
+      <h2 style="margin-bottom: 10px; font-size: 18px; color: #333; position: relative; z-index: 2;">
+        <%= list.title %>
+      </h2>
+
+      <!-- Exibição de quantidade de itens e porcentagem de conclusão -->
+      <p style="font-size: 14px; color: #666; position: relative; z-index: 2;">
+        <%= "#{list.items.count} itens" %> | 
+        <% if list.items.count > 0 %>
+          <%= "#{((list.items.where(done: true).count.to_f / list.items.count) * 100).round(0)}% concluído" %>
+        <% else %>
+          Nenhum item adicionado
+        <% end %>
+      </p>
+
+      <!-- Barra de progresso personalizada -->
+      <div class="progress-bar-container" style="width: 100%; height: 10px; background-color: #e0e0e0; border-radius: 5px; overflow: hidden;">
+        <% if list.items.count > 0 %>
+          <div class="progress-bar" 
+               style="width: <%= (list.items.where(done: true).count.to_f / list.items.count) * 100 %>%; 
+                      height: 100%; 
+                      background-color: #4caf50;"></div>
+        <% end %>
+      </div>
 
       <!-- Botões de ações -->
       <div class="card-actions" style="display: flex; justify-content: space-around; margin-top: 10px; position: relative; z-index: 3;">
