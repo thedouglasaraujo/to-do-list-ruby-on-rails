@@ -19,12 +19,13 @@
 
 <!-- Formulário para adicionar um novo item -->
 <%= form_with(model: [@list, Item.new], local: true) do |form| %>
-  <div class="field" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; width: 100vh;">
+  <div class="field" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; width: 100%;">
     <%= form.text_field :description, placeholder: "Descrição do Novo Item", class: "input large", style: "flex: 1; min-width: 300px;" %>
     <%= form.hidden_field :done, value: false %>
-    <%= form.submit "Adicionar item", class: "btn btn-primary small-btn", style: "min-width: 50px; min-height: 50px; font-size: 16px; color: white;" %>
+    <%= form.submit "Adicionar item", class: "btn btn-primary small-btn", style: "min-width: 150px; height: 45px; font-size: 16px; color: white;" %>
   </div>
 <% end %>
+
 
 <hr>
 
@@ -44,15 +45,42 @@
         <td style="text-align: center; padding: 10px;">
           <!-- Checkbox para alternar entre concluído e pendente -->
           <%= form_with(model: item, url: toggle_status_list_item_path(@list, item), method: :patch, local: true) do |f| %>
-            <%= f.check_box :done, { checked: item.done, class: 'item-status-checkbox' }, true, false %>
+            <label class="custom-checkbox">
+              <%= f.check_box :done, { checked: item.done, class: 'item-status-checkbox' }, true, false %>
+              <span class="checkmark">
+                <span class="checkmark-icon"><%= item.done ? '✓' : '' %></span>
+              </span>
+            </label>
           <% end %>
         </td>
         <td style="text-align: center; padding: 10px; display: flex; gap: 10px; justify-content: center;">
           <!-- Botões de editar e excluir com estilo -->
           <%= link_to 'Editar', edit_list_item_path(@list, item), class: "btn btn-primary small-btn" %>
-          <%= link_to 'Excluir', list_item_path(@list, item), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este item?' }, class: "btn btn-danger small-btn" %>
+          <!-- Botão para abrir o modal -->
+          <%= link_to 'Excluir', '#', class: 'btn btn-danger btn-sm', data: { bs_toggle: 'modal', bs_target: "#confirmModal-#{item.id}" } %>
         </td>
       </tr>
+
+      <!-- Modal de Confirmação -->
+      <div class="modal fade" id="confirmModal-<%= item.id %>" tabindex="-1" aria-labelledby="confirmModalLabel-<%= item.id %>" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confirmModalLabel-<%= item.id %>">Confirmação</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+              Tem certeza de que deseja excluir este item? Esta ação não pode ser desfeita.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <%= form_with(url: list_item_path(@list, item), method: :delete, html: { style: "display: inline;" }) do %>
+                <%= submit_tag 'Excluir', class: 'btn btn-danger' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
   </tbody>
 </table>
