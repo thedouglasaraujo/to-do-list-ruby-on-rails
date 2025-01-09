@@ -59,7 +59,7 @@
         </td>
         <td style="text-align: center; padding: 10px; display: flex; gap: 10px; justify-content: center;">
           <!-- Botões de editar e excluir com estilo -->
-          <%= link_to 'Editar', edit_list_item_path(@list, item), class: "btn btn-primary small-btn" %>
+          <%= link_to 'Editar', '#', class: "btn btn-primary small-btn", data: { bs_toggle: 'modal', bs_target: "#editModal-#{item.id}" } %>
           <!-- Botão para abrir o modal -->
           <%= link_to 'Excluir', '#', class: 'btn btn-danger btn-sm', data: { bs_toggle: 'modal', bs_target: "#confirmModal-#{item.id}" } %>
         </td>
@@ -85,6 +85,30 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal de Edição -->
+      <%= form_with(model: item, url: list_item_path(@list, item), method: :patch, local: true, html: { id: "editModalForm-#{item.id}" }) do |form| %>
+        <div class="modal fade" id="editModal-<%= item.id %>" tabindex="-1" aria-labelledby="editModalLabel-<%= item.id %>" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel-<%= item.id %>">Editar Atividade</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+              </div>
+              <div class="modal-body">
+                <%= form.label :description, 'Descrição' %>
+                <%= form.text_area :description, class: 'form-control', rows: 3, placeholder: 'Insira a nova descrição' %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <%= form.submit 'Salvar', class: 'btn btn-primary' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+
     <% end %>
   </tbody>
 </table>
@@ -109,3 +133,4 @@
     </div>
   </div>
 </div>
+
