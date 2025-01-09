@@ -15,14 +15,15 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :application, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <header style="text-align: center;">
-      <h1 style="color: white; padding-top: 20px;">Taskify</h1>
+    <header style="background-color: #333; padding: 20px;">
+      <h1 style="color: white; margin: 0; text-align: center;">
+        <%= link_to "Taskify", lists_path, style: "color: white; text-decoration: none;" %>
+      </h1>
     </header>
 
     <main>
