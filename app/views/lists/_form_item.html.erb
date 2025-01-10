@@ -1,6 +1,6 @@
 <%= form_with(model: [@list, Item.new], local: true) do |form| %>
   <div class="field" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; width: 100%;">
-    <%= form.text_field :description, placeholder: "Descrição do Novo Item", class: "input large", style: "flex: 1; min-width: 300px;" %>
+    <%= form.text_field :description, placeholder: "Descrição do Novo Item", class: "input large", style: "flex: 1; min-width: 300px;", required: true %>
     <%= form.hidden_field :done, value: false %>
     <%= form.submit "Adicionar item", class: "btn btn-primary small-btn", style: "min-width: 150px; height: 45px; font-size: 16px; color: white; border: 0;" %>
   </div>

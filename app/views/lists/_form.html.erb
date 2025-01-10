@@ -12,12 +12,12 @@
 
   <div class="field" style="flex-direction: column;">
     <%= form.label :title, "Título" %>
-    <%= form.text_field :title, class: "input large" %>
+    <%= form.text_field :title, class: "input large", required: true %>
   </div>
 
   <div class="field" style="flex-direction: column;">
     <%= form.label :description, "Descrição" %>
-    <%= form.text_area :description, class: "textarea large" %>
+    <%= form.text_area :description, class: "textarea large", required: true %>
   </div>
 
   <div class="actions">
