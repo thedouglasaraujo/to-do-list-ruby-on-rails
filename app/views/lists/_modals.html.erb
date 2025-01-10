@@ -1,0 +1,63 @@
+<!-- Modal de Exclusão do Item -->
+<div class="modal fade" id="confirmModal-<%= item.id %>" tabindex="-1" aria-labelledby="confirmModalLabel-<%= item.id %>" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel-<%= item.id %>">Confirmação</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+    </div>
+    <div class="modal-body">
+        Tem certeza de que deseja excluir este item? Esta ação não pode ser desfeita.
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <%= form_with(url: list_item_path(@list, item), method: :delete, html: { style: "display: inline;" }) do %>
+        <%= submit_tag 'Excluir', class: 'btn btn-danger' %>
+        <% end %>
+    </div>
+    </div>
+</div>
+</div>
+
+<!-- Modal de Edição do Item-->
+<%= form_with(model: item, url: list_item_path(@list, item), method: :patch, local: true, html: { id: "editModalForm-#{item.id}" }) do |form| %>
+<div class="modal fade" id="editModal-<%= item.id %>" tabindex="-1" aria-labelledby="editModalLabel-<%= item.id %>" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel-<%= item.id %>">Editar Atividade</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+        <%= form.label :description, 'Descrição' %>
+        <%= form.text_area :description, class: 'form-control', rows: 3, placeholder: 'Insira a nova descrição' %>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <%= form.submit 'Salvar', class: 'btn btn-primary' %>
+        </div>
+    </div>
+    </div>
+</div>
+<% end %>
+
+<!-- Modal de Exclusão da Lista -->
+<div class="modal fade" id="confirmModal-<%= @list.id %>" tabindex="-1" aria-labelledby="confirmModalLabel-<%= @list.id %>" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel-<%= @list.id %>">Confirmação</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza de que deseja excluir esta lista? Esta ação não pode ser desfeita.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <%= form_with(url: list_path(@list), method: :delete, html: { style: "display: inline;" }) do %>
+          <%= submit_tag 'Excluir', class: 'btn btn-danger' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<div class="card-actions" style="display: flex; gap: 10px; white-space: nowrap;">
+  <%= link_to 'Voltar', lists_path, class: "btn btn-secondary small-btn" %>
+  <%= link_to 'Editar', edit_list_path(@list), class: "btn btn-primary small-btn" %>
+  <%= link_to 'Excluir', '#', class: 'btn btn-danger btn-sm', data: { bs_toggle: 'modal', bs_target: "#confirmModal-#{@list.id}" } %>
+</div>

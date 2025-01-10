@@ -1,0 +1,20 @@
+<tr>
+<td style="padding: 10px; text-align: left;"><%= item.description %></td>
+<td style="text-align: center; padding: 10px;">
+  <!-- Formulário para alternar entre concluído e pendente -->
+  <%= form_with(model: item, url: toggle_status_list_item_path(@list, item), method: :patch, local: true) do |f| %>
+    <label class="custom-checkbox">
+      <%= f.check_box :done, { checked: item.done, class: 'item-status-checkbox', onchange: 'this.form.submit();' }, true, false %>
+      <span class="checkmark">
+        <span class="checkmark-icon"><%= item.done ? '' : '' %></span>
+      </span>
+    </label>
+  <% end %>
+</td>
+<td style="text-align: center; padding: 10px; display: flex; gap: 10px; justify-content: center;">
+  <!-- Botões de editar e excluir com estilo -->
+  <%= link_to 'Editar', '#', class: "btn btn-primary small-btn", data: { bs_toggle: 'modal', bs_target: "#editModal-#{item.id}" } %>
+  <!-- Botão para abrir o modal -->
+  <%= link_to 'Excluir', '#', class: 'btn btn-danger btn-sm', data: { bs_toggle: 'modal', bs_target: "#confirmModal-#{item.id}" } %>
+</td>
+</tr>
