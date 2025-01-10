@@ -1,0 +1,26 @@
+<div class="card" style="padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff; text-align: center; transition: transform 0.2s; position: relative;">
+    <%= link_to list_path(list), style: "display: block; width: 100%; height: 100%; position: absolute; inset: 0; z-index: 1;" do %>
+    <% end %>
+  <h2 style="margin-bottom: 10px; font-size: 18px; color: #333; position: relative; z-index: 2;">
+    <%= list.title %>
+  </h2>
+  
+  <p style="font-size: 14px; color: #666; position: relative; z-index: 2;">
+    <%= "#{list.items.count} itens" %> | 
+    <% if list.items.count > 0 %>
+      <%= "#{((list.items.where(done: true).count.to_f / list.items.count) * 100).round(0)}% concluído" %>
+    <% else %>
+      Nenhum item adicionado
+    <% end %>
+  </p>
+
+  <%= render 'lists/progress_bar', list: list %>
+
+  <div class="card-actions" style="display: flex; justify-content: space-around; margin-top: 10px; position: relative; z-index: 3;">
+    <%= link_to 'Ver', list_path(list), class: "btn btn-secondary btn-sm" %>
+    <%= link_to 'Editar', edit_list_path(list), class: "btn btn-primary btn-sm" %>
+    <%= link_to 'Excluir', '#', class: 'btn btn-danger btn-sm', data: { bs_toggle: 'modal', bs_target: "#confirmModal-#{list.id}" } %>
+  </div>
+</div>
+
+<%= render 'modal_confirm_exclusion', list: list %>
