@@ -1,6 +1,6 @@
 <h1 style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
   <span><%= %></span>
-  <%= render 'actions' %>
+  <%= render 'lists/partials/actions' %>
 </h1>
 
 <!-- Título -->
@@ -14,7 +14,7 @@
 </p>
 <hr>
 
-<%= render 'form_item' %>
+<%= render 'lists/partials/form_item' %>
 
 <hr>
 
@@ -28,8 +28,8 @@
   </thead>
   <tbody>
     <% @list.items.each do |item| %>
-      <%= render 'item_row', item: item %>
-      <%= render 'modals', item: item %>
+      <%= render 'lists/partials/item_row', item: item %>
+      <%= render 'lists/partials/modals', item: item %>
     <% end %>
   </tbody>
 </table>
