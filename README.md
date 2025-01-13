@@ -1,24 +1,36 @@
-# README
+<h1 align="center">Taskify :clipboard:</h1>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este repositório contém uma aplicação **To-Do List** desenvolvida utilizando **Ruby on Rails**. O objetivo do projeto é permitir a criação de várias listas de tarefas, onde cada lista pode conter múltiplos itens. A aplicação possui front-end e back-end integrados, proporcionando uma experiência simples e intuitiva.
 
-Things you may want to cover:
+## Instalação e Configuração
 
-* Ruby version
+Siga os passos abaixo para configurar e executar o projeto localmente:
 
-* System dependencies
+1. **Clone o repositório**:
+    ```bash
+    git clone https://github.com/thedouglasaraujo/to-do-list-ruby-on-rails.git
+    ```
 
-* Configuration
+2. **Acesse o diretório do projeto**:
+    ```bash
+    cd seu_repositorio
+    ```
 
-* Database creation
+3. **Instale as dependências**:
+    ```bash
+    bundle install
+    ```
 
-* Database initialization
+4. **Configure o banco de dados**:
+    ```bash
+    rails db:migrate
+    ```
 
-* How to run the test suite
+5. **Inicie o servidor**:
+    ```bash
+    rails server
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+6. **Acesse a aplicação**:
 
-* Deployment instructions
-
-* ...
+   Abra o navegador e acesse [http://localhost:3000](http://localhost:3000) para visualizar a aplicação em execução.
