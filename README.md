@@ -34,3 +34,14 @@ Siga os passos abaixo para configurar e executar o projeto localmente:
 6. **Acesse a aplicação**:
 
    Abra o navegador e acesse [http://localhost:3000](http://localhost:3000) para visualizar a aplicação em execução.
+
+## :camera: Imagens
+ <p align="center">
+  <img src="app/assets/images/image01.png">
+  <img src="app/assets/images/image02.png">
+  <img src="app/assets/images/image03.png">
+  <img src="app/assets/images/image04.png">
+  <img src="app/assets/images/image05.png">
+  <img src="app/assets/images/image06.png">
+  <img src="app/assets/images/image07.png">
+</p>
